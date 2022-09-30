@@ -1,0 +1,45 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Library Manager</h1>
+    <div>
+        <a class="btn btn-primary btn-sm m-2" href="/book?handler=create">Add new book</a>
+        <table class="table table-bordered">
+            <thead >
+                <tr>
+                    <th>Tiêu đề</th>
+                    <th>Tác giả</th>
+                    <th>Nhà xuất bản</th>
+                    <th>Năm xuất bản</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var book in Model.Books) {
+                    <tr>
+                        <td>
+                            <a href="/book/@book.Id">@book.Title</a>
+                        </td>
+                        <td>@book.Authors</td>
+                        <td>@book.Publisher</td>
+                        <td>@book.Year</td>
+                        <td>
+                                <a class="btn btn-info btn-sm" href="/book/@book.Id" >Detail</a>
+                                <a class="btn btn-danger btn-sm" href="/book/@book.Id?handler=delete">Delete</a>
+                                <a class="btn btn-secondary btn-sm" href="/book/@book.Id?handler=update">Update</a>
+                            </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="5">
+                        <strong class="text-primary">Tổng số sách trong thư viện: @Model.Books.Count</strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

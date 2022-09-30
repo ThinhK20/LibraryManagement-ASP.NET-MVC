@@ -1,0 +1,15 @@
+﻿@model BookModel
+@{
+    ViewData["Title"] = "Edit";
+    ViewData["Disable"] = false;
+}
+
+<h1>Edit: <span class="text-primary">@Model.Title</span></h1>
+
+<partial name="_Single" model="Model" view-data="ViewData"></partial>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+    }

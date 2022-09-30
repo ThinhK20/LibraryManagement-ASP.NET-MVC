@@ -1,0 +1,53 @@
+﻿@model BookModel 
+@{
+    bool disable = (bool)ViewData["Disable"];
+}
+
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="Id" hidden />
+    <div class="mb-2">
+        <label asp-for="Title"></label>
+        <input  class="form-control" asp-for="Title" disabled="@disable"/>
+        <span asp-validation-for="Title"></span>
+    </div>
+  <div class="mb-2">
+        <label asp-for="Authors"></label>
+        <input disabled="@disable" class="form-control" asp-for="Authors"/>
+        <span asp-validation-for="Authors"></span>
+    </div>
+      <div class="mb-2">
+        <label asp-for="Publisher"></label>
+        <input disabled="@disable" class="form-control" asp-for="Publisher"/>
+        <span asp-validation-for="Publisher"></span>
+    </div>
+     <div class="mb-2">
+        <label asp-for="Year"></label>
+        <input disabled="@disable" class="form-control" asp-for="Year"/>
+        <span asp-validation-for="Year"></span>
+    </div>
+    <div class="mb-2">
+         <label asp-for="Description"></label>
+         <textarea disabled="@disable" asp-for="Description" class="form-control" rows="8"></textarea>
+    </div>
+     @if(ViewData["Title"] == "Edit") {
+         <div class="mb-2 mt-3">
+             <label asp-for="DataFile"></label>
+             <input disabled="@disable" type="file" name="file" asp-for="DataFile" />
+        </div>
+     }
+
+      <div class="mb-2 mt-3">
+         <label for="Download">Download e-book</label>
+         <a asp-action="Read" id="Download"  asp-route-id="@Model.Id" class="btn btn-sm btn-dark" >Here</a>
+
+    </div>
+    <div class="d-flex justify-content-center"> 
+        @if(ViewData["Title"] == "Edit") {
+            <button type="submit" class="btn btn-primary mt-3 mb-3 me-3" >Update</button>
+        } 
+        @if(ViewData["Title"] == "Delete") {
+            <button class="btn  btn-danger mt-3 mb-3 me-3" type="submit">Delete</button>
+        }
+        <a class="btn  btn-secondary mt-3 mb-3" href="/" >Back To Home</a>
+    </div>
+</form>

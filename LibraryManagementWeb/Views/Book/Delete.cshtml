@@ -1,0 +1,17 @@
+﻿@model BookModel
+@{
+    ViewData["Title"] = "Delete";
+    ViewData["Disable"] = true;
+}
+
+<h1>Delete: <span class="text-primary">@Model.Title</span></h1>
+
+<partial name="_Single" model="Model" view-data="ViewData"></partial>
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+    }

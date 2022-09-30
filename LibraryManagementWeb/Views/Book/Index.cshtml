@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BookModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="h3 pt-3 pb-3">Library Management</p>
+<div class="mb-4">
+    <a class="btn btn-primary" asp-action="create">Create a new book</a>
+    <a class="btn btn-success float-end" asp-action="SaveIntoFile">Save into file</a>
+</div>
+
+<partial name="_Notification"></partial>
+
+<table class="table text-center table-bordered table-hover table-striped shadow">
+    <thead >
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Authors)</th>
+            <th>@Html.DisplayNameFor(model => model.Publisher)</th>
+            <th>@Html.DisplayNameFor(model => model.Year)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var book in Model) {
+            <tr>
+                <td>
+                    <a>@book.Title</a>
+                </td>
+                <td>@book.Authors</td>
+                <td>@book.Publisher</td>
+                <td>@book.Year</td>
+                <td>
+                        <a asp-action="Detail" asp-route-id="@book.Id"  class="btn btn-info btn-sm">Detail</a>
+                        <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-primary btn-sm ms-2 me-2">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger btn-sm">Delete</a>
+                        <a asp-action="Read" asp-route-id="@book.Id" class="btn btn-sm btn-dark ms-2" >Read</a>
+                </td>
+            </tr>
+        }
+            <tr class="p-5">
+                <td colspan="5">
+                    <strong class="text-primary">Tổng số sách: @Model.Count()</strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <form asp-action="Index" method="get">
+                            <input type="submit" value="Go to" /> page <input type="number" max="@ViewData["Pages"]" min="1" name="page" 
+                            value="@ViewData["Page"]" /> 
+                        of @ViewData["Pages"]
+                    </form>
+                </td>
+</tr>
+    </tbody>
+</table>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+    }
